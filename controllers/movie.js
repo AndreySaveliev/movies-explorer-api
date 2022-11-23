@@ -1,7 +1,7 @@
 const Error404 = require('../Errors/Error404');
 const Error403 = require('../Errors/Error403');
-const Movie = require('../models/movie');
 const Error401 = require('../Errors/Error401');
+const Movie = require('../models/movie');
 
 const getMovies = (req, res, next) => {
   Movie.find({})
@@ -15,7 +15,8 @@ const getMovies = (req, res, next) => {
 
 const postMovie = (req, res, next) => {
   const {
-    country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId,
+    country, director, duration, year, description, image, trailer,
+    nameRU, nameEN, thumbnail, movieId,
   } = req.body;
   const owner = req.user._id;
   Movie.create({
