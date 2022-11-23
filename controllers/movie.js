@@ -4,7 +4,8 @@ const Error401 = require('../Errors/Error401');
 const Movie = require('../models/movie');
 
 const getMovies = (req, res, next) => {
-  Movie.find({})
+  const userId = req.user._id;
+  Movie.find({ owner: userId })
     .then((movies) => {
       res.send({ data: movies });
     })
