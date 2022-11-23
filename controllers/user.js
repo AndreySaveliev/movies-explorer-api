@@ -32,7 +32,7 @@ const changeUserInfo = (req, res, next) => {
   User.findByIdAndUpdate(
     req.user._id,
     { name, email },
-    { new: true, runValidators: true }
+    { new: true, runValidators: true },
   )
     .then((user) => {
       if (user === null) {
@@ -56,14 +56,14 @@ const createUser = (req, res, next) => {
     .then((hash) => User.create({
       name,
       password: hash,
-      email
+      email,
     }).then((user) => {
       res.send({
         data: {
           name: user.name,
           email: user.email,
-          _id: user._id
-        }
+          _id: user._id,
+        },
       });
     }))
     .catch((err) => {
@@ -90,11 +90,11 @@ const login = (req, res, next) => {
           throw new Error401('Неправильная почта или пароль');
         }
         const token = jwt.sign({ _id: user._id }, JWT_SECRET, {
-          expiresIn: '7d'
+          expiresIn: '7d',
         });
         res.cookie('Bearer', token, {
           maxAge: 3600 * 27 * 7,
-          httpOnly: true
+          httpOnly: true,
         });
         return res.send({ data: user });
       });
@@ -108,5 +108,5 @@ module.exports = {
   getMe,
   changeUserInfo,
   createUser,
-  login
+  login,
 };

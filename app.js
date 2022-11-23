@@ -31,7 +31,7 @@ app.post(
       name: Joi.string().required().min(2).max(30),
     }),
   }),
-  createUser
+  createUser,
 );
 app.post(
   '/signin',
@@ -41,7 +41,7 @@ app.post(
       password: Joi.string().required(),
     }),
   }),
-  login
+  login,
 );
 
 app.post('/signout', (req, res) => {
@@ -61,8 +61,7 @@ app.use(errorLogger);
 
 app.use(errors);
 
-app.use((err, req, res, next) => {
-  console.log(err);
+app.use((err, req, res) => {
   if (err.statusCode) {
     res.status(err.statusCode).send({ message: err.message });
   } else {
@@ -70,6 +69,4 @@ app.use((err, req, res, next) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`current POST is ${PORT}`);
-});
+app.listen(PORT);

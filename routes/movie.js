@@ -26,7 +26,7 @@ router.post(
       movieId: Joi.string().required(),
     }),
   }),
-  postMovie
+  postMovie,
 );
 router.delete(
   '/:movieId',
@@ -35,6 +35,6 @@ router.delete(
       movieId: Joi.string().required().alphanum().hex(),
     }),
   }),
-  deleteMovie
+  deleteMovie,
 );
 module.exports = router;

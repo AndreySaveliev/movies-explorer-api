@@ -14,7 +14,9 @@ const getMovies = (req, res, next) => {
 };
 
 const postMovie = (req, res, next) => {
-  const { country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId } = req.body;
+  const {
+    country, director, duration, year, description, image, trailer, nameRU, nameEN, thumbnail, movieId,
+  } = req.body;
   const owner = req.user._id;
   Movie.create({
     country,

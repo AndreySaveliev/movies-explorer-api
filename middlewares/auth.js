@@ -5,7 +5,6 @@ const { JWT_SECRET = 'MOVIE' } = process.env;
 
 module.exports = (req, res, next) => {
   const cookie = req.cookies.Bearer;
-  console.log(cookie);
   if (!cookie) {
     throw new Error401('Необходимо авторизоироваться');
   }
