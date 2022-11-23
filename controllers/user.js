@@ -11,7 +11,7 @@ const { JWT_SECRET = 'MOVIE' } = process.env;
 
 const getMe = (req, res, next) => {
   const userId = req.user._id;
-  User.fingById({ _id: userId })
+  User.findById({ _id: userId })
     .then((user) => {
       if (user === null) {
         throw new Error404('Указаный пользователь не найдей');
