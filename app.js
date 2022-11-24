@@ -50,8 +50,8 @@ app.post('/signout', (req, res) => {
 });
 
 app.use(auth);
-app.use('/user', require('./routes/user'));
-app.use('/movie', require('./routes/movie'));
+app.use('/users', require('./routes/user'));
+app.use('/movies', require('./routes/movie'));
 
 app.use('*', (req, res, next) => {
   next(new Error404('Кажется вы заблудились'));
