@@ -33,13 +33,14 @@ const changeUserInfo = (req, res, next) => {
     .then((user) => {
       if (user.name === name || user.email === email) {
         throw new Error400('Передайте новые данные');
+      } else if (user === null) {
+        throw new Error404('Указаный пользователь не найдей');
       }
-      User.findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true }).then((user) => {
-        if (user === null) {
-          throw new Error404('Указаный пользователь не найдей');
-        }
-        res.send({ data: user });
-      });
+      User.findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true })
+        .then((newUserData) => {
+          res.send({ data: newUserData });
+        })
+        .catch((err) => next(err));
     })
     .catch((err) => {
       if (err.name === 'CastError' || err.name === 'ValidationError') {
