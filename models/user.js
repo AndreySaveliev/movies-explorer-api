@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    maxlegnth: 30,
+    maxlength: 30,
     minlength: 2,
     required: true,
   },
@@ -16,6 +16,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     unique: true,
     required: true,
+    validate: {
+      validator(v) {
+        return /[a-zA-Z0-9]*@[a-zA-Z0-0]*\.[a-zA-Z0-9]*/.test(v);
+      },
+    },
   },
 });
 
