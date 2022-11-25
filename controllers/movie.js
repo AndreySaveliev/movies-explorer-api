@@ -15,24 +15,9 @@ const getMovies = (req, res, next) => {
 };
 
 const postMovie = (req, res, next) => {
-  const {
-    country, director, duration, year, description, image, trailer,
-    nameRU, nameEN, thumbnail, movieId,
-  } = req.body;
-  const owner = req.user._id;
   Movie.create({
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailer,
-    nameRU,
-    nameEN,
-    thumbnail,
-    movieId,
-    owner,
+    ...req.body,
+    owner: req.user._id,
   })
     .then((movie) => res.send({ data: movie }))
     .catch((err) => {
@@ -48,7 +33,7 @@ const deleteMovie = (req, res, next) => {
         throw new Error404('Фильм не найдена');
       }
       if (movie.owner.toString() === req.user._id) {
-        Movie.deleteOne().then(res.send({ data: movie }));
+        Movie.deleteOne().then(res.send({ data: movie })).catch((err) => next(err));
       } else {
         throw new Error403('Вы не можете удалять фильмы других пользователей');
       }
