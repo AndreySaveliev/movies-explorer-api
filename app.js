@@ -44,12 +44,14 @@ app.post(
   login,
 );
 
+app.use(auth);
+
 app.post('/signout', (req, res) => {
   res.clearCookie('Bearer');
   res.send({ message: 'Куки удалены' });
 });
 
-app.use(auth);
+
 app.use('/users', require('./routes/user'));
 app.use('/movies', require('./routes/movie'));
 
