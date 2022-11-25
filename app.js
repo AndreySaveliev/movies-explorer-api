@@ -7,13 +7,14 @@ const { createUser, login } = require('./controllers/user');
 const Error404 = require('./Errors/Error404');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const errorsHandler = require('./middlewares/errorsHandler');
 require('dotenv').config();
 
 const { PORT = 3000 } = process.env;
-
+const { DB_URL = 'mongodb://localhost:27017/moviesdb' } = process.env;
 const app = express();
 app.use(cookieparser());
-mongoose.connect('mongodb://localhost:27017/filmsitedb', {
+mongoose.connect(DB_URL, {
   useNewUrlParser: true,
 });
 
