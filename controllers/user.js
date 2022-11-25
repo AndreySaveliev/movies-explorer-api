@@ -29,16 +29,17 @@ const getMe = (req, res, next) => {
 
 const changeUserInfo = (req, res, next) => {
   const { name, email } = req.body;
-  User.findByIdAndUpdate(
-    req.user._id,
-    { name, email },
-    { new: true, runValidators: true },
-  )
+  User.findById({ _id: req.user._id })
     .then((user) => {
-      if (user === null) {
-        throw new Error404('Указаный пользователь не найдей');
+      if (user.name === name || user.email === email) {
+        throw new Error400('Передайте новые данные');
       }
-      res.send({ data: user });
+      User.findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true }).then((user) => {
+        if (user === null) {
+          throw new Error404('Указаный пользователь не найдей');
+        }
+        res.send({ data: user });
+      });
     })
     .catch((err) => {
       if (err.name === 'CastError' || err.name === 'ValidationError') {
