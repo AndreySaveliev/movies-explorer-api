@@ -96,7 +96,7 @@ const login = (req, res, next) => {
           maxAge: 3600 * 27 * 7,
           httpOnly: true,
         });
-        return res.send({ data: user });
+        return res.send({ data: { name: user.name, email: user.email, _id: user._id } });
       });
     })
     .catch((err) => {
