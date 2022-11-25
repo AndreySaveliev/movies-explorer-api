@@ -51,24 +51,24 @@ app.post('/signout', (req, res) => {
   res.send({ message: 'Куки удалены' });
 });
 
-
 app.use('/users', require('./routes/user'));
 app.use('/movies', require('./routes/movie'));
+
+app.use(errorLogger);
+
+app.use(errors());
 
 app.use('*', (req, res, next) => {
   next(new Error404('Кажется вы заблудились'));
 });
 
-app.use(errorLogger);
-
-app.use(errors);
-
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   if (err.statusCode) {
     res.status(err.statusCode).send({ message: err.message });
   } else {
     res.status(500).send({ message: 'Ошибка по умолчанию' });
   }
+  next();
 });
 
 app.listen(PORT);
