@@ -14,7 +14,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
   },
   year: {
-    type: Number,
+    type: String,
     required: true,
   },
   description: {
@@ -26,9 +26,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        if (v) {
-          /https?:\/\/(www\.)?[-a-zA-Z0-9]{1,256}\.[a-zA-Z0-9]{1,6}[a-zA-Z0-9._~:/?#[\]@!$&()*+,;=-]{1,256}$/.test(v);
-        }
+        return /https?:\/\/(www\.)?[-a-zA-Z0-9]{1,256}\.[a-zA-Z0-9]{1,6}[a-zA-Z0-9._~:/?#[\]@!$&()*+,;=-]{1,256}$/.test(v);
       },
     },
   },
@@ -37,9 +35,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        if (v) {
-          /https?:\/\/(www\.)?[-a-zA-Z0-9]{1,256}\.[a-zA-Z0-9]{1,6}[a-zA-Z0-9._~:/?#[\]@!$&()*+,;=-]{1,256}$/.test(v);
-        }
+        return /https?:\/\/(www\.)?[-a-zA-Z0-9]{1,256}\.[a-zA-Z0-9]{1,6}[a-zA-Z0-9._~:/?#[\]@!$&()*+,;=-]{1,256}$/.test(v);
       },
     },
   },
@@ -48,9 +44,7 @@ const movieSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(v) {
-        if (v) {
-          /https?:\/\/(www\.)?[-a-zA-Z0-9]{1,256}\.[a-zA-Z0-9]{1,6}[a-zA-Z0-9._~:/?#[\]@!$&()*+,;=-]{1,256}$/.test(v);
-        }
+        return /https?:\/\/(www\.)?[-a-zA-Z0-9]{1,256}\.[a-zA-Z0-9]{1,6}[a-zA-Z0-9._~:/?#[\]@!$&()*+,;=-]{1,256}$/.test(v);
       },
     },
   },
