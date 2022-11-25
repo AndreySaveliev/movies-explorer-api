@@ -63,14 +63,6 @@ app.use('*', (req, res, next) => {
   next(new Error404('Кажется вы заблудились'));
 });
 
-app.use((err, req, res, next) => {
-  if (err.statusCode) {
-    res.status(err.statusCode).send({ message: err.message });
-  } else {
-    res.status(500).send({ message: 'Ошибка по умолчанию' });
-  }
-  next();
-});
 app.use(errorsHandler);
 
 app.listen(PORT);
