@@ -11,7 +11,7 @@ const errorsHandler = require('./middlewares/errorsHandler');
 require('dotenv').config();
 
 const { PORT = 3000 } = process.env;
-const { DB_URL = 'mongodb://localhost:27017/moviesdb' } = process.env;
+const { DB_URL } = process.env;
 const app = express();
 app.use(cookieparser());
 mongoose.connect(DB_URL, {
