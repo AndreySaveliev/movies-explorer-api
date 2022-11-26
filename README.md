@@ -1,5 +1,5 @@
 # CINEMA FINDER?CINDER - BACKEND
-### IP - 158.160.17.110 | URL back - cinder.nomoredomains.club
+### IP - 158.160.17.110 | URL back - https://cinder.nomoredomains.club
 ## Эта часть сайта готова полностью. Весь серверный функционал был реализован как задумывалось. 
 #### - регистрастрия 
 #### - авторизация
