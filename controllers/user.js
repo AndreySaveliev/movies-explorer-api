@@ -32,9 +32,9 @@ const changeUserInfo = (req, res, next) => {
   User.findById({ _id: req.user._id })
     .then((user) => {
       if (user.name === name) {
-        throw new Error400('Передайте новое имя');
+        throw new Error409('Передайте новое имя');
       } else if (user.email === email) {
-        throw new Error400('Передайте новый email');
+        throw new Error409('Передайте новый email');
       } else if (user === null) {
         throw new Error404('Указаный пользователь не найдей');
       }
